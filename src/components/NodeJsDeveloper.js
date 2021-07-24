@@ -10,6 +10,7 @@ const NodeJsDeveloper = (props) => {
     return (
         <div>
             <h1>Node js Developer</h1>
+            <p>List of Candidate applied for Node js developer job</p>
             <DeveloperTable result={ result } statusUpdate={statusUpdate} />
         </div>
     )

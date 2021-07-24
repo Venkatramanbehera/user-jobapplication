@@ -10,7 +10,7 @@ const FrontEndDeveloper = (props) => {
     return (
         <div>
             <h1>Front-End Developer</h1>
-            <p>List of Candidate</p>
+            <p>List of Candidate applied for frontend developer job</p>
             <DeveloperTable result={ result } statusUpdate={statusUpdate} />
         </div>
     )

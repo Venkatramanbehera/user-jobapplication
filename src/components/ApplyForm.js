@@ -47,62 +47,92 @@ const ApplyForm = (props) => {
 
     return (
         <div>
-            <form onSubmit={ handleSubmit } >
+            <form onSubmit={ handleSubmit } style={{ height:'500px',width:'500px',marginLeft:'100px'}} autoComplete="off">
 
-                <label>Full Name</label>
-                <input 
-                    type="text" 
-                    value={ fullName } 
-                    onChange={ handleChange } 
-                    name = "fullName"
-                /> 
-                <hr />
+                <div className="mb-3">
+                    <label className="form-label">Full Name</label>
+                    <input 
+                        type="text" 
+                        value={ fullName } 
+                        onChange={ handleChange } 
+                        name = "fullName"
+                        className = "form-control"
+                    /> 
+                </div>
+                
+                
 
-                <label>Email Address</label>
-                <input 
-                    type="email" 
-                    placeholder="example@email.com" 
-                    value={ email } 
-                    onChange={ handleChange } 
-                    name="email"
-                /> 
-                <hr />
+                <div className="mb-3">
+                    <label className="form-label">Email Address</label>
+                    <input 
+                        type="email" 
+                        placeholder="example@email.com" 
+                        value={ email } 
+                        onChange={ handleChange } 
+                        name="email"
+                        className = "form-control"
+                    /> 
+                </div>
+                
+                
 
-                <label>Contact Number</label>
-                <input 
-                    type="number" 
-                    placeholder = "+91 8698521470" 
-                    value={ number } 
-                    onChange={ handleChange } 
-                    name="number"
-                /> 
-                <hr />
+                <div className="mb-3">
+                    <label className="form-label">Contact Number</label>
+                    <input 
+                        type="number" 
+                        placeholder = "+91 8698521470" 
+                        value={ number } 
+                        onChange={ handleChange } 
+                        name="number"
+                        className = "form-control"
+                    /> 
+                </div>
+                
+                
 
-                <label>Applying for Job </label>
-                <select value={ jobType } onChange={ handleChange} name="jobType">
-                    <option value="">--Select--</option>
-                    <option value="Front-End Developer" >FrontEnd Developer</option>
-                    <option value="Node.js Developer">Node js Developer</option>
-                    <option value="MEAN Stack Developer">Mean Stack Developer</option>
-                    <option value="FULL Stack Developer">Full Stack Developer</option>
-                </select>
-                <hr />
+                <div className="mb-3">
+                    <label className="form-label">Applying for Job </label>
+                    <select value={ jobType } onChange={ handleChange} name="jobType" className = "form-control">
+                        <option value="">--Select--</option>
+                        <option value="Front-End Developer" >FrontEnd Developer</option>
+                        <option value="Node.js Developer">Node js Developer</option>
+                        <option value="MEAN Stack Developer">Mean Stack Developer</option>
+                        <option value="FULL Stack Developer">Full Stack Developer</option>
+                    </select>
+                </div>
+                
+                
 
-                <label>Experience</label>
-                <input 
-                    type="text" 
-                    placeholder="2year" 
-                    value={ experience } 
-                    onChange={ handleChange } 
-                    name="experience"
-                /> 
-                <hr />
+                <div className="mb-3">
+                    <label className="form-label">Experience</label>
+                    <input 
+                        type="text" 
+                        placeholder="2year" 
+                        value={ experience } 
+                        onChange={ handleChange } 
+                        name="experience"
+                        className = "form-control"
+                    /> 
+                </div>
+                
+                
 
-                <label>Technical Skills</label>
-                <textarea name="skills" id="" cols="30" rows="5" placeholder="Technical Skills" value={ skills } onChange={ handleChange }></textarea>
-                <hr />
-
-                <button type="submit">Send Application</button>
+                <div className="mb-3">
+                    <label className="form-label">Technical Skills</label>
+                    <textarea 
+                        name="skills" 
+                        className = "form-control" 
+                        cols="30" rows="5" 
+                        placeholder="Technical Skills" 
+                        value={ skills } 
+                        onChange={ handleChange }
+                    ></textarea>
+                </div>
+                
+                <div className="mb-3">
+                    <button type="submit" className="btn btn-primary">Send Application</button>
+                </div>
+                
             </form>
         </div>
     )

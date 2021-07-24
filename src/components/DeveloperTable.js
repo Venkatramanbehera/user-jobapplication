@@ -46,7 +46,7 @@ const DeveloperTable = (props) => {
 
     return (
         <div>
-            <table border="1" className="table">
+            <table border="1" className="table table-striped">
                 <thead>
                     <tr>
                         <th>Name</th>
@@ -66,15 +66,15 @@ const DeveloperTable = (props) => {
                                     <td>{ r.skills }</td>
                                     <td>{ r.experience }</td>
                                     <td>{ r.createdAt.slice(0,10) }</td>
-                                    <td><button onClick={() => handleUserDetails(r._id) }>View Details</button></td>
+                                    <td><button className="btn btn-info" onClick={() => handleUserDetails(r._id) }>Details</button></td>
                                     <td>
                                         {
                                             r.status === 'applied' ? (
                                                 <div>
-                                                    <button onClick={ () => handleShortList(r._id) } >shortlist</button> 
-                                                    <button onClick={ () => handleReject(r._id) }>Reject</button>
+                                                    <button onClick={ () => handleShortList(r._id) } className="btn btn-success me-2">shortlist</button> 
+                                                    <button onClick={ () => handleReject(r._id) } className="btn btn-danger">Reject</button>
                                                 </div>
-                                            ) : ( <button disabled>{ r.status }</button> )
+                                            ) : ( <button disabled className="btn btn-secondary">{ r.status }</button> )
                                         }
                                     </td>
                                 </tr>

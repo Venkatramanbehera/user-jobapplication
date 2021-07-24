@@ -43,10 +43,11 @@ const App = (props) => {
   }
   
   return (
-    <div>
-            <Link to="/">Home</Link>
-            <Link to="/admin">Admin Dashboard</Link>
-
+    <div className="container">
+        <ul style={{ listStyleType:'none'}}>
+          <li style={{ display:'inline'}}><Link to="/" style={{ textDecoration:"none"}}>Home</Link></li>
+          <li style={{ display:'inline'}}><Link to="/admin" style={{ textDecoration:"none"}}>Admin Dashboard</Link></li>
+        </ul>
             <Route path="/" render={ (props) => {
               return <FormContainer {...props} addParticipants={addParticipants}/>
             }}  exact={ true }/>

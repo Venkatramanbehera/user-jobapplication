@@ -18,7 +18,7 @@ const FormContainer = (props) => {
     }
 
     return (
-        <div>
+        <div >
             <h1>Apply For Job</h1>
             <ApplyForm postFormData={postFormData}/>
         </div>

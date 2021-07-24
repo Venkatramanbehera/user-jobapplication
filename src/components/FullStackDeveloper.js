@@ -10,6 +10,7 @@ const FullStackDeveloper = (props) => {
     return (
         <div>
             <h1>Full stack Developer</h1>
+            <p>List of Candidate applied for full stack developer job</p>
             <DeveloperTable result={ result } statusUpdate={ statusUpdate }/>
         </div>
     )
