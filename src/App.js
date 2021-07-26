@@ -25,10 +25,8 @@ const App = (props) => {
   },[])
 
   const addParticipants = (participant) => {
-    
     const result = [participant,...participants]
     setParticipants(result)
-
   }
 
   const statusUpdate = (participant) => {
@@ -44,10 +42,20 @@ const App = (props) => {
   
   return (
     <div className="container">
-        <ul style={{ listStyleType:'none'}}>
-          <li style={{ display:'inline'}}><Link to="/" style={{ textDecoration:"none"}}>Home</Link></li>
-          <li style={{ display:'inline'}}><Link to="/admin" style={{ textDecoration:"none"}}>Admin Dashboard</Link></li>
-        </ul>
+        <nav className="navbar navbar-expand-lg navbar-light bg-light">
+          <div className="container-fluid">
+            <div className="collapse navbar-collapse">
+              <ul className="navbar-nav">
+                <li className="nav-item me-4">
+                  <Link to="/" style={{ textDecoration:"none"}}>Home</Link>
+                </li>
+                <li className="nav-item">
+                  <Link to="/admin" style={{ textDecoration:"none"}}>Admin Dashboard</Link>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </nav>
             <Route path="/" render={ (props) => {
               return <FormContainer {...props} addParticipants={addParticipants}/>
             }}  exact={ true }/>
@@ -56,9 +64,9 @@ const App = (props) => {
               return <AdminContainer {...props} participants={participants}/>
             }}/>
 
-            <Route path="/admin/frontend" render={ (props) => {
+            <Route path="/admin" render={ (props) => {
               return <FrontEndDeveloper {...props} participants={participants} statusUpdate={statusUpdate}/>
-            }}/>
+            }} exact={ true }/>
 
             <Route path="/admin/nodejs" render={ (props) => {
               return <NodeJsDeveloper {...props} participants={ participants } statusUpdate={statusUpdate}/>

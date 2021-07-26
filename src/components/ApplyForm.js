@@ -1,8 +1,8 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 const ApplyForm = (props) => {
 
-    const { postFormData } = props
+    const { postFormData, isSubmit } = props
 
     const [ fullName, setFullName ] = useState('')
     const [ email, setEmail ] = useState('')
@@ -10,6 +10,22 @@ const ApplyForm = (props) => {
     const [ jobType, setJobType ] = useState('')
     const [ experience, setExperience ] = useState('')
     const [ skills, setSkills ] = useState('')
+
+    const [ success, setSuccess] = useState(false)
+
+    const [ formError, setFormError ] = useState({})
+    const errors = {}
+
+    useEffect(() => {
+        if(isSubmit){
+            setFullName('')
+            setEmail('')
+            setNumber('')
+            setJobType('')
+            setExperience('')
+            setSkills('')
+        }
+    },[ isSubmit])
 
     const handleChange = (e) => {
         const { name, value } = e.target
@@ -32,23 +48,65 @@ const ApplyForm = (props) => {
         }
     }
 
+    const runValidator = () => {
+
+        if(fullName.trim().length === 0){
+            errors.name = 'name can not be blank.'
+        }
+        if(email.trim().length === 0){
+            errors.email = 'email can not be blank'
+        }
+        if(number.trim().length === 0){
+            errors.number = 'number can not be blank'
+        }
+        if(jobType === ''){
+            errors.select = 'please select job type'
+        }
+        if(experience.trim().length === 0){
+            errors.experience = 'experience can not be empty'
+        }
+        if(skills.trim().length === 0){
+            errors.skills = 'skills cant be empty'
+        }
+    }
+
     const handleSubmit = (e) => {
         e.preventDefault()
-        const formData = {
-            name : fullName,
-            email : email,
-            phone : number,
-            jobTitle : jobType,
-            experience : experience,
-            skills : skills
+
+        runValidator()
+
+        if(Object.keys(errors).length === 0){
+            setFormError({})
+            const formData = {
+                name : fullName,
+                email : email,
+                phone : number,
+                jobTitle : jobType,
+                experience : experience,
+                skills : skills
+            }
+            postFormData(formData)
+            setSuccess(!success)
         }
-        postFormData(formData)
+        else{
+            setFormError(errors)
+        }
     }
+
 
     return (
         <div>
-            <form onSubmit={ handleSubmit } style={{ height:'500px',width:'500px',marginLeft:'100px'}} autoComplete="off">
-
+            <form onSubmit={ handleSubmit } style={{ height:'500px',width:'500px',marginLeft:'100px'}} className="mt-4" autoComplete="off">
+                
+                <div className="mb-3">
+                    {
+                        success && 
+                        (
+                            isSubmit ? 
+                            <span style={{ backgroundColor:'green', color:'white'}}> Data Added successfully</span> : 
+                            <span></span> )
+                    }
+                </div>
                 <div className="mb-3">
                     <label className="form-label">Full Name</label>
                     <input 
@@ -58,6 +116,9 @@ const ApplyForm = (props) => {
                         name = "fullName"
                         className = "form-control"
                     /> 
+                    {
+                        formError.name && <span style={{ color : 'red'}}>{ formError.name }</span>
+                    }
                 </div>
                 
                 
@@ -72,6 +133,9 @@ const ApplyForm = (props) => {
                         name="email"
                         className = "form-control"
                     /> 
+                    {
+                        formError.email && <span style={{ color : 'red'}}>{ formError.email }</span>
+                    }
                 </div>
                 
                 
@@ -86,6 +150,9 @@ const ApplyForm = (props) => {
                         name="number"
                         className = "form-control"
                     /> 
+                    {
+                        formError.number && <span style={{ color : 'red'}}>{ formError.number }</span>
+                    }
                 </div>
                 
                 
@@ -99,6 +166,9 @@ const ApplyForm = (props) => {
                         <option value="MEAN Stack Developer">Mean Stack Developer</option>
                         <option value="FULL Stack Developer">Full Stack Developer</option>
                     </select>
+                    {
+                        formError.select && <span style={{ color : 'red'}}>{ formError.select }</span>
+                    }
                 </div>
                 
                 
@@ -113,6 +183,9 @@ const ApplyForm = (props) => {
                         name="experience"
                         className = "form-control"
                     /> 
+                    {
+                        formError.experience && <span style={{ color : 'red'}}>{ formError.experience }</span>
+                    }
                 </div>
                 
                 
@@ -127,6 +200,9 @@ const ApplyForm = (props) => {
                         value={ skills } 
                         onChange={ handleChange }
                     ></textarea>
+                    {
+                        formError.skills && <span style={{ color : 'red'}}>{ formError.skills }</span>
+                    }
                 </div>
                 
                 <div className="mb-3">

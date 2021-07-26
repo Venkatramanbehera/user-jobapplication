@@ -1,13 +1,24 @@
 import React from 'react'
 import Modal from 'react-modal'
 
+const customStyles = {
+  content: {
+    top: '50%',
+    left: '50%',
+    right: 'auto',
+    bottom: 'auto',
+    marginRight: '-50%',
+    transform: 'translate(-50%, -50%)',
+  },
+};
+
 const UsersDetails = (props) => {
   
     Modal.setAppElement('#root')
     const { handleToggle, users } = props
 
     return (
-        <Modal isOpen={true}>
+        <Modal isOpen={true} style={ customStyles }>
             <h1> {users.name} </h1>
             <hr />
             <h2>Contact Number - {users.phone} </h2>
